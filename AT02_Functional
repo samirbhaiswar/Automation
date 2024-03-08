@@ -1,0 +1,55 @@
+package Webdriver;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AT02_Functional {
+
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.chrome.driver", "E:\\Drivers\\chromedriver.exe")	;
+		WebDriver driver = new ChromeDriver();
+		
+		//navigate url
+		driver.navigate().to("https://demo.dealsdray.com/");
+		Thread.sleep(1200);
+		
+		//login by credentials
+		driver.findElement(By.name("username")).sendKeys("prexo.mis@dealsdray.com");
+		
+		driver.findElement(By.name("password")).sendKeys("prexo.mis@dealsdray.com");
+		driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/div/form/div[3]/div/button")).click();
+		Thread.sleep(2200); //Wait to  see credentials
+		
+		//for maximize screen (Depends only if screen in minimize window by default)
+		driver.manage().window().maximize();
+		Thread.sleep(2200);
+		
+		//Click on order dropdown
+		driver.findElement(By.xpath("/html/body/div/div/div[1]/div/div[2]/div[1]/div[2]/button")).click();
+		Thread.sleep(2200);
+		
+		//select and click on order 
+		driver.findElement(By.xpath("/html/body/div/div/div[1]/div/div[2]/div[1]/div[2]/div/div[1]/a/button/span[1]")).click();
+		Thread.sleep(2200);
+		
+		//Click on---> Bulk order btn
+		driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div[2]/div[2]/button")).click();
+		Thread.sleep(2200);
+		
+		//to click on file upload
+		driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div[2]/div[3]/div/div/input")).sendKeys("D:\\demo-data.xlsx");
+		//import
+		driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div[2]/div[3]/button")).click();
+		Thread.sleep(6200); // Just to stay more time on webpage 
+		
+		//validate data
+		driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div[2]/div[3]/button")).click();
+		System.out.println("Data Validation done");
+		Thread.sleep(3000);
+		
+		//Close browser (I added only for recording purpose) 
+		driver.close();
+
+	}
+}
